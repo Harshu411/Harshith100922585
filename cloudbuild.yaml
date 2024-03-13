@@ -3,6 +3,9 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/united-planet-412315/harshith100922585/harshithimage:${COMMIT_SHA}', '.']
  
+ # Push the Docker image to the artifact registry!
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/united-planet-412315/harshith100922585/harshithimage:${COMMIT_SHA}']
  
 options:
   # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
