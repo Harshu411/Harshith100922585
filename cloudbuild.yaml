@@ -12,3 +12,18 @@ options:
   # defaultLogsBucket: 'gs://your-build-logs-bucket' # Replace with your build logs bucket
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
  
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy nodejs-app \
+          --image=us-central1-docker.pkg.dev/united-planet-412315/harshith100922585/harshithimage:${COMMIT_SHA} \
+          --platform=managed \
+          --region=us-central1 \
+          --port=3000 \
+          --allow-unauthenticated
+ 
+images:
+# Store images in Google Artifact Registry
+  - us-central1-docker.pkg.dev/united-planet-412315/harshith100922585/harshithimage:${COMMIT_SHA}
